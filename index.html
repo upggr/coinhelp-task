@@ -18,11 +18,11 @@
     url: 'http://localhost:8545',
     data: {
       "jsonrpc": "2.0",
-      "method": "eth_getblockcount",
-      "params": ["0xf69019Bd9a90bFD10C7336A3162AC1947e333DE0", "latest"],
-
+      "method": "eth_getBalance",
+      "params": ["0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5", "latest"],
       "id": 1
     }
+  }
   }).done(function(response) {
     console.log(response);
   });
