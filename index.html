@@ -34,8 +34,10 @@
     type: 'POST',
     url: 'http://localhost:8545',
     data: get_height,
-    dataType: 'text',
+    dataType: 'json',
     cache: false,
+    contentType: 'application/json',
+    timeout: 15000
   }).done(function(response) {
     console.log(response);
   });
