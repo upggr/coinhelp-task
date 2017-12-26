@@ -14,16 +14,26 @@
 </body>
 <script>
   var apicall_data = {
-    "jsonrpc": "1.0",
+    "jsonrpc": "2.0",
     "method": "eth_getBalance",
     "params": ["0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5", "latest"],
     "id": 1
   };
-  console.log(apicall_data);
+
+  var get_height = {
+    "method": "eth_blockNumber",
+    "params": [],
+    "id": 1,
+    "jsonrpc": "2.0"
+  };
+
+
+
+  console.log(get_height);
   $.ajax({
     type: 'POST',
     url: 'http://localhost:8545',
-    data: apicall_data,
+    data: get_height,
     dataType: 'json',
     cache: false,
   }).done(function(response) {
