@@ -37,9 +37,13 @@
     dataType: 'json',
     cache: false,
     contentType: 'application/json',
-    timeout: 15000
-  }).done(function(response) {
-    console.log(response);
+    timeout: 15000,
+    success: function(result) {
+      console.log(result);
+    },
+    error: function(xhr, status, error) {
+      console.warn(xhr.responseText)
+    }
   });
 </script>
 
