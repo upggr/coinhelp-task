@@ -21,7 +21,9 @@
       "method": "eth_getBalance",
       "params": ["0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5", "latest"],
       "id": 1
-    }
+    },
+    dataType: 'json',
+    cache: false,
   }).done(function(response) {
     console.log(response);
   });
