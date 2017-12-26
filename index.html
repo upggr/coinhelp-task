@@ -13,15 +13,17 @@
 
 </body>
 <script>
+  var apicall_data = {
+    "jsonrpc": "2.0",
+    "method": "eth_getBalance",
+    "params": ["0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5", "latest"],
+    "id": 1
+  };
+
   $.ajax({
     type: 'POST',
     url: 'http://localhost:8545',
-    data: {
-      "jsonrpc": "2.0",
-      "method": "eth_getBalance",
-      "params": ["0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5", "latest"],
-      "id": 1
-    },
+    data: apicall_data,
     dataType: 'json',
     cache: false,
   }).done(function(response) {
