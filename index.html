@@ -171,7 +171,7 @@
           var transblock = curblockint - 5
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
-          //    console.log(curblock);
+          console.log(curblock);
           //    console.log(curblockint);
         } else if (method = "eth_getBlockByNumber") {
           var thetrans = result['result']['transactions'];
