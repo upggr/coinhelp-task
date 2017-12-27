@@ -126,11 +126,11 @@
   function get_transaction_block(server, address, block) {
     var apicall_data = {
       "jsonrpc": "2.0",
-      "method": "eth_getBlock",
+      "method": "eth_getBlockByNumber",
       "params": [block, true],
       "id": 1
     };
-    var method = "eth_getBlock";
+    var method = "eth_getBlockByNumber";
     var thetype1 = '';
     apicall(server, apicall_data, address, method, thetype1)
   }
@@ -173,7 +173,7 @@
           $('.confs_' + address).empty().append(confs);
           console.log(curblock);
           console.log(curblockint);
-        } else if (method = "eth_getBlock") {
+        } else if (method = "eth_getBlockByNumber") {
           console.log(result['result']);
 
         }
