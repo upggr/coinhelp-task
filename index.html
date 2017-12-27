@@ -47,10 +47,7 @@
       var addr = rows[y].split("\t");
       for (var x in addr) {
         console.log(addr[x]);
-        var conf_balls = '';
-        for (i = 0; i <= 10; i++) {
-          conf_balls += '<span class="conf' + i + '">conf' + i + '</span>';
-        }
+        var conf_balls = genprettyconf(3, 10)
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td></td><td></td><td>' + conf_balls + '</td></tr>'
       }
 
@@ -60,7 +57,16 @@
     $('#address_monitor').append('<table data-toggle="table" class="table"><thead><tr><th>Address</th><th>Balance</th><th>Incoming</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
   }
 
-
+  function genprettyconf(conf, total) {
+    var confballs = '';
+    for (i = 0; i <= conf; i++) {
+      confballs += '<span class="green">greenball</span>';
+    }
+    for (k = 0; k <= total - conf; k++) {
+      confballs += '<span class="red">red</span>';
+    }
+    return confballs;
+  }
 
   var apicall_data = {
     "jsonrpc": "2.0",
