@@ -182,6 +182,7 @@
           $('.confs_' + address).empty().append(confs);
         } else if (extra = "get_confirmations") {
           var thetrans = result['result']['transactions'];
+          console.log(thetrans);
           var bloc_array_top = {};
           thetrans.forEach(function(trans) {
             var theblock = parseInt(trans['blockNumber']);
