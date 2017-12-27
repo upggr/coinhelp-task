@@ -177,7 +177,7 @@
         } else if (extra = "get_confirmations") {
           //    getcurrentblock('', server, "eth_blockNumber", "", "just_the_currentblock");
           var thetrans = result['result']['transactions'];
-          var bloc_array_top = array();
+          var bloc_array_top = {};
           thetrans.forEach(function(trans) {
             var theblock = parseInt(trans['blockNumber']);
             var rec_addr = trans['to'];
