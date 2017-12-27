@@ -65,7 +65,7 @@
 
   window.setInterval(function() {
     generateTable();
-  }, 2000);
+  }, 5000);
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
@@ -77,10 +77,11 @@
       var addr = rows[y].split("\t");
       for (var x in addr) {
         //    console.log(addr[x]);
-        var conf_balls = genprettyconf(3, 10);
+
+        getcurrentblock(addr[x], server, "eth_blockNumber", "");
         getbalance(addr[x], server, "eth_getBalance", "latest");
         getbalance(addr[x], server, "eth_getBalance", "pending");
-        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td>' + conf_balls + '</td></tr>'
+        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
       }
 
     }
@@ -121,6 +122,18 @@
     apicall(server, apicall_data, address, method, thetype1)
   }
 
+  function getcurrentblock(address, server, method, thetype1) {
+    var apicall_data = {
+      "jsonrpc": "2.0",
+      "method": method,
+      "params": [],
+      "id": 1
+    };
+    apicall(server, apicall_data, address, method, thetype1)
+  }
+
+
+
 
   function apicall(server, data, address, method, thetype1) {
     $.ajax({
@@ -137,6 +150,12 @@
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
           $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
+        } else if (method == 'eth_blockNumber') {
+          var curblock = result['result'];
+          var curblockint = parseInt(curblock, 16) / Math.pow(10, 18);
+          confs = genprettyconf(3, 10)
+          //    $('.confs_' + address).empty().append(confs);
+          console.log(curblockint);
         }
       },
       error: function(xhr, status, error) {
@@ -144,6 +163,46 @@
       }
     });
 
+  }
+
+
+
+
+  function getTransactionsByAccount(myaccount, startBlockNumber, endBlockNumber) {
+    if (endBlockNumber == null) {
+      endBlockNumber = eth.blockNumber;
+      console.log("Using endBlockNumber: " + endBlockNumber);
+    }
+    if (startBlockNumber == null) {
+      startBlockNumber = endBlockNumber - 1000;
+      console.log("Using startBlockNumber: " + startBlockNumber);
+    }
+    console.log("Searching for transactions to/from account \"" + myaccount + "\" within blocks " + startBlockNumber + " and " + endBlockNumber);
+
+    for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+      if (i % 1000 == 0) {
+        console.log("Searching block " + i);
+      }
+      var block = eth.getBlock(i, true);
+      if (block != null && block.transactions != null) {
+        block.transactions.forEach(function(e) {
+          if (myaccount == "*" || myaccount == e.from || myaccount == e.to) {
+            console.log("  tx hash          : " + e.hash + "\n" +
+              "   nonce           : " + e.nonce + "\n" +
+              "   blockHash       : " + e.blockHash + "\n" +
+              "   blockNumber     : " + e.blockNumber + "\n" +
+              "   transactionIndex: " + e.transactionIndex + "\n" +
+              "   from            : " + e.from + "\n" +
+              "   to              : " + e.to + "\n" +
+              "   value           : " + e.value + "\n" +
+              "   time            : " + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + "\n" +
+              "   gasPrice        : " + e.gasPrice + "\n" +
+              "   gas             : " + e.gas + "\n" +
+              "   input           : " + e.input);
+          }
+        })
+      }
+    }
   }
 </script>
 
