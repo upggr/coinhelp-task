@@ -177,8 +177,9 @@
         } else if (extra = "get_confirmations") {
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
-            if (trans['to'] != 'null') {
-              thereceivingaddress = trans['to'];
+            var rec_addr = trans['to'];
+            if (rec_addr != 'null') {
+              thereceivingaddress = rec_addr;
               console.log(address, thereceivingaddress);
               if (address.toUpperCase() == thereceivingaddress.toUpperCase()) {
 
