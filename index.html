@@ -209,7 +209,7 @@
           if (confs == 3) {
             alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
           }
-          if (confs <= 10) {
+          if (confs <= extra2 + 1) {
             confs = genprettyconf(confs, 10)
             $('.confs_' + address).empty().append(confs);
           } else {
