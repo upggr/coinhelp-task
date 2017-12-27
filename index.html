@@ -149,7 +149,7 @@
   }
 
   function fillbalance(timeline, address, server) {
-    var lt_balance = getbalance(addr[x], server, "eth_getBalance", timeline);
+    var lt_balance = getbalance(address, server, "eth_getBalance", timeline);
     $('balance_' + timeline + '_' + address).empty().append(lt_balance);
   }
 
