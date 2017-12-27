@@ -123,26 +123,27 @@
 
   function apicall(server, data, address, method) {
     $.ajax({
-        type: 'POST',
-        url: server,
-        data: JSON.stringify(data),
-        dataType: 'json',
-        cache: false,
-        contentType: 'application/json',
-        timeout: 15000,
-        success: function(result) {
-          console.log(result['result']);
-          if (method == 'eth_getBalance') {
-            var weibalance = result['result'];
-            var ethbalance = new BigNumber(weibalance).dividedBy(new BigNumber("1000000000000000000"); $('.balance' + address).empty().append(ethbalance);
-            }
-          },
-          error: function(xhr, status, error) {
-            console.warn(xhr.responseText)
-          }
-        });
+      type: 'POST',
+      url: server,
+      data: JSON.stringify(data),
+      dataType: 'json',
+      cache: false,
+      contentType: 'application/json',
+      timeout: 15000,
+      success: function(result) {
+        console.log(result['result']);
+        if (method == 'eth_getBalance') {
+          var weibalance = result['result'];
+          var ethbalance = new BigNumber(weibalance).dividedBy(new BigNumber("1000000000000000000"));
+          $('.balance' + address).empty().append(ethbalance);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.warn(xhr.responseText)
+      }
+    });
 
-    }
+  }
 </script>
 
 
