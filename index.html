@@ -41,13 +41,16 @@
     var data = $('textarea[name=pasted_data]').val();
     console.log(data);
     var rows = data.split("\n");
-
+    var confcells = '';
+    for (i = 0; i <= 10; i++) {
+      confcells. = '<td class="conf' + i_ + '">conf' + i + '</td>';
+    }
     var table = $('<table />');
     for (var y in rows) {
       var cells = rows[y].split("\t");
       var row = $('<tr />');
       for (var x in cells) {
-        row.append('<td>' + cells[x] + '</td><td class="conf1">conf1</td><td class="conf2"></td>');
+        row.append('<td>' + cells[x] + '</td>' + confcells);
       }
       table.append(row);
     }
