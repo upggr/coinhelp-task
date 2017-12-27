@@ -41,23 +41,20 @@
     var data = $('textarea[name=pasted_data]').val();
     console.log(data);
     var rows = data.split("\n");
-    var confcells = '';
+    var rowsloop = '';
     for (i = 0; i <= 10; i++) {
-      confcells +=
-        '<td class="conf' + i + '">conf' + i + '</td>';
+      conf_balls += '<span class="conf' + i + '">conf' + i + '</span>';
     }
-    var table = $('<table />');
     for (var y in rows) {
-      var cells = rows[y].split("\t");
-      var row = $('<tr />');
-      for (var x in cells) {
-        row.append('<td>' + cells[x] + '</td>' + confcells);
+      var addr = rows[y].split("\t");
+      for (var x in addr) {
+        console.log(addr[x]);
       }
-      table.append(row);
+
     }
 
     // Insert into DOM
-    $('#address_monitor').html(table);
+    $('#address_monitor').empty().apend('<table data-toggle="table"><thead><tr><th>Address</th><th>Balance</th><th>Incoming</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
   }
 
 
