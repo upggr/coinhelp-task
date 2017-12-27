@@ -79,6 +79,7 @@
         //    console.log(addr[x]);
 
         getcurrentblock(addr[x], server, "eth_blockNumber", "", "the_currentblock");
+        get_transaction_block(server, address, curblock);
         getbalance(addr[x], server, "eth_getBalance", "latest", "balance_fields");
         getbalance(addr[x], server, "eth_getBalance", "pending", "balance_fields");
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
@@ -168,7 +169,7 @@
         } else if (extra == 'the_currentblock') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
-          var tr_block = get_transaction_block(server, address, curblock);
+
           var transblock = curblockint - 5
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
