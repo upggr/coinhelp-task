@@ -6,6 +6,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .circlegreen:before {
+      content: ' \25CF';
+      font-size: 50px;
+    }
+  </style>
+
+
+
+
 </head>
 
 <body>
@@ -60,7 +70,7 @@
   function genprettyconf(conf, total) {
     var confballs = '';
     for (i = 1; i <= conf; i++) {
-      confballs += '<span class="green">green </span>';
+      confballs += '<span class="circlegreen"></span>';
     }
     for (k = 1; k <= total - conf; k++) {
       confballs += '<span class="red">red </span>';
