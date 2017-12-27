@@ -176,9 +176,9 @@
         } else if (method = "eth_getBlockByNumber") {
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
-            console.log(trans);
+            console.log(trans['to']);
           });
-          console.log(result['result']['transactions']);
+          //    console.log(result['result']['transactions']);
 
 
         }
