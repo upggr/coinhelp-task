@@ -7,9 +7,13 @@ I spinned up a digital ocean droplet for faster syncing etc.
 install geth in the droplet
 
 sudo apt-get install software-properties-common
+
 sudo add-apt-repository -y ppa:ethereum/ethereum
+
 sudo apt-get update
+
 sudo apt-get install ethereum
+
 sudo apt install geth
 
 geth was failing to sync properly with 512 ram, added a 2G and set swapiness to 30.
@@ -36,10 +40,16 @@ eth.syncing
 
 and all the other api commands...
 
-When synced, you can use index.html
+When synced, you can use index.html.
+
+You can just run it locally, provided you have started geth with --rpccorsdomain
 
 You can connect metamask, create accounts and get some ether from the faucet and try sending receiving some eth on the rinkeby network
 
+You can have as many addresses as you want there, and as many confirmations as you want
 
+Youtube demonstration!
+---
+[![demonstration](https://img.youtube.com/vi/NWTMwFDHwMI/0.jpg)](https://youtu.be/NWTMwFDHwMI)
 
 
