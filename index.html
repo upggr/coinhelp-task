@@ -7,10 +7,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    .circlegreen:before {
-      content: ' \25CF';
-      font-size: 10px;
-      color: 'green';
+    .circlegreen {
+      background: 'green';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .circlered {
+      background: 'red';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
     }
   </style>
 
@@ -74,7 +82,7 @@
       confballs += '<span class="circlegreen"></span>';
     }
     for (k = 1; k <= total - conf; k++) {
-      confballs += '<span class="red">red </span>';
+      confballs += '<span class="circlered"></span>';
     }
     return confballs;
   }
