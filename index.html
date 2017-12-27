@@ -73,7 +73,6 @@
     var rows = data.split("\n");
     var rowsloop = '';
     var server = 'http://localhost:9001';
-    var thetype1 = '';
     for (var y in rows) {
       var addr = rows[y].split("\t");
       for (var x in addr) {
@@ -87,7 +86,7 @@
     }
 
     $('#address_monitor').empty();
-    $('#address_monitor').append('<table data-toggle="table" class="table"><thead><tr><th>Address</th><th>Balance</th><th>Incoming</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
+    $('#address_monitor').append('<table data-toggle="table" class="table"><thead><tr><th>Address</th><th>Balance</th><th>Pending</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
   }
 
   function genprettyconf(conf, total) {
