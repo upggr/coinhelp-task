@@ -170,7 +170,7 @@
           var curblockint = parseInt(curblock, 16)
           var tr_block = get_transaction_block(server, address, curblock);
           var transblock = curblockint - 5
-          confs = genprettyconf(curblockint - tr_block, 10)
+          confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
           //    console.log(curblock);
           //    console.log(curblockint);
