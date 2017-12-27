@@ -179,7 +179,7 @@
             //    console.log(address, trans['to'], trans['blockNumber']);
             console.log(address == trans['to']);
             if (trans['to']) {
-              console.log('transaction registered at block : ' + trans['blockNumber']);
+              console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
             }
 
 
