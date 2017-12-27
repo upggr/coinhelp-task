@@ -61,6 +61,8 @@
 
 </body>
 <script>
+  $('textarea[name=pasted_data]').val("abc\n\u202Edef\nghi");
+
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
     //  console.log(data);
