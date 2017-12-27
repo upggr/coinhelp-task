@@ -169,7 +169,7 @@
         } else if (extra == 'the_currentblock') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
-          console.log(curblockint);
+          //      console.log(curblockint);
           //    var transblock = get_transaction_block(server, address, curblock);
 
           for (m = 0; m <= 3; m++) {
@@ -179,7 +179,7 @@
             get_transaction_block(server, address, previousblockhex);
           }
           var transblock = sessionStorage.getItem("transblock");
-          console.log(transblock);
+          //    console.log(transblock);
           var confs = curblockint - transblock;
           if (confs < 10 + 1) {
             confs = genprettyconf(confs, 10)
@@ -197,7 +197,7 @@
             var rec_addr = trans['to'];
             if (rec_addr) {
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
-                console.log('transaction registered at block : ' + theblock);
+                //        console.log('transaction registered at block : ' + theblock);
                 sessionStorage.setItem("transblock", theblock);
               }
             }
