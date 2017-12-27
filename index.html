@@ -239,6 +239,7 @@
             if (rec_addr) {
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
                 console.log('transaction registered at block : ' + theblock);
+                alert('transaction registered at block : ' + theblock + ' for ' + rec_addr);
                 sessionStorage.setItem("transblock_" + rec_addr.toUpperCase(), theblock);
               }
             }
@@ -246,7 +247,7 @@
           //    console.log(transblock);
 
         } else if (extra = "just_the_currentblock") {
-          console.log(result['result']);
+          //      console.log(result['result']);
         }
 
       },
