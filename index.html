@@ -78,10 +78,13 @@
       for (var x in addr) {
         //    console.log(addr[x]);
 
-        getcurrentblock(addr[x], server, "eth_blockNumber", "");
-        getbalance(addr[x], server, "eth_getBalance", "latest");
-        getbalance(addr[x], server, "eth_getBalance", "pending");
+        //    getcurrentblock(addr[x], server, "eth_blockNumber", "");
+        //    getbalance(addr[x], server, "eth_getBalance", "latest");
+        //    getbalance(addr[x], server, "eth_getBalance", "pending");
+
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
+        $('balance_latest_' + addr[x]).empty().append(getbalance(addr[x], server, "eth_getBalance", "latest"););
+        $('balance_pending_' + addr[x]).empty().append(getbalance(addr[x], server, "eth_getBalance", "pending"););
       }
 
     }
@@ -122,6 +125,18 @@
     apicall(server, apicall_data, address, method, thetype1)
   }
 
+
+  function get_transaction_block(address, server, method, thetype1, block) {
+    var apicall_data = {
+      "jsonrpc": "2.0",
+      "method": "eth_getBlock",
+      "params": [block, true],
+      "id": 1
+    };
+    apicall(server, apicall_data, address, method, thetype1)
+  }
+
+
   function getcurrentblock(address, server, method, thetype1) {
     var apicall_data = {
       "jsonrpc": "2.0",
@@ -149,7 +164,8 @@
         if (method == 'eth_getBalance') {
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
-          $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
+          return ethbalance;
+
         } else if (method == 'eth_blockNumber') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
@@ -157,6 +173,8 @@
           confs = genprettyconf(curblockint - curblockint + 4, 10)
           $('.confs_' + address).empty().append(confs);
           console.log(curblockint);
+        } else if (method = "eth_getBlock") {
+          console.log(result['result']);
         }
       },
       error: function(xhr, status, error) {
