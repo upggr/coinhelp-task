@@ -84,6 +84,7 @@
 
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>';
         var lt_balance = getbalance(addr[x], server, "eth_getBalance", "latest");
+        console.log(lt_balance);
         var pd_balance = getbalance(addr[x], server, "eth_getBalance", "pending");
         $('balance_latest_' + addr[x]).empty().append(lt_balance);
         $('balance_pending_' + addr[x]).empty().append(pd_balance);
