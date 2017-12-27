@@ -134,7 +134,7 @@
         console.log(result['result']);
         if (method == 'eth_getBalance') {
           var weibalance = result['result'];
-          var ethbalance = new BigNumber(weibalance).dividedBy(new BigNumber("1000000000000000000"));
+          var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
           $('.balance' + address).empty().append(ethbalance);
         }
       },
