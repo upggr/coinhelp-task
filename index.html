@@ -165,6 +165,7 @@
         } else if (method == 'eth_blockNumber') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
+          var tr_block = get_transaction_block(server, address, curblock);
           var transblock = curblockint - 5
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
