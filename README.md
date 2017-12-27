@@ -40,6 +40,6 @@ When synced, you can use index.html
 
 You can connect metamask, create accounts and get some ether from the faucet and try sending receiving some eth on the rinkeby network
 
-watch video I made with this working :)
+
 
 
