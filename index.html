@@ -36,11 +36,35 @@
 <body>
 
   <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="comment">Enter the RPC daemon address and port here</label>
+          <input class="form-control" name="rpc_server_address" rows="5" value="http://localhost:9001"></input>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="comment">Enter refresh interval in seconds</label>
+          <input class="form-control" name="refresh_sched" rows="5" value="4"></input>
+        </div>
+      </div>
+
+    </div>
+
+
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           <label for="comment">Paste ethereum/bitcoin addresses here, one address per line</label>
-          <textarea class="form-control" name="pasted_data" rows="5" value="This is some\ntext with a newline character" id="comment"></textarea>
+          <textarea class="form-control" name="pasted_data" rows="5" value="0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5\n0xa38fb4fFfE602F95b3703B69D1246C7ef279dD7D"></textarea>
         </div>
       </div>
 
@@ -69,11 +93,11 @@
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
-    var extra2 = 7;
+    var extra2 = $('textarea[name=refresh_sched]').val();
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
-    var server = 'http://localhost:9001';
+    var server = $('textarea[name=rpc_server_address]').val();
     for (var y in rows) {
       var addr = rows[y].split("\t");
       for (var x in addr) {
