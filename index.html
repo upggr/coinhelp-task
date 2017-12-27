@@ -79,10 +79,10 @@
   function genprettyconf(conf, total) {
     var confballs = '';
     for (i = 1; i <= conf; i++) {
-      confballs += '<span id="circlegreen"></span>';
+      confballs += '<div id="circlegreen"></div>';
     }
     for (k = 1; k <= total - conf; k++) {
-      confballs += '<span id="circlered"></span>';
+      confballs += '<div id="circlered"></div>';
     }
     return confballs;
   }
