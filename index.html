@@ -89,7 +89,7 @@
     }
 
     $('#address_monitor').empty();
-    $('#address_monitor').append('<table data-toggle="table" class="table"><thead><tr><th>Address</th><th>Balance</th><th>Pending</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
+    $('#address_monitor').append('<table data-toggle="table" class="table"><thead><tr><th>Address</th><th>Balance</th><th>Pending</th><th>Confirmations (incoming transactions only)</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
   }
 
   function genprettyconf(conf, total) {
