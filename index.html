@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div id="address_monitor"></div>
+        <div id="address_monitor" class="table-responsive"></div>
       </div>
 
     </div>
@@ -59,7 +59,7 @@
     }
 
     $('#address_monitor').empty();
-    $('#address_monitor').append('<table data-toggle="table"><thead><tr><th>Address</th><th>Balance</th><th>Incoming</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
+    $('#address_monitor').append('<table data-toggle="table" class="table"><thead><tr><th>Address</th><th>Balance</th><th>Incoming</th><th>Confirmations</th></tr></thead><tbody>' + rowsloop + '</tbody></table>');
   }
 
 
