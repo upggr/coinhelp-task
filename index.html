@@ -65,7 +65,7 @@
 
   window.setInterval(function() {
     generateTable();
-  }, 2000);
+  }, 5000);
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
@@ -116,7 +116,7 @@
 
 
   function getbalance(address, server, method, thetype1) {
-    console.log("called getbalance");
+    //    console.log("called getbalance");
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
@@ -155,7 +155,7 @@
 
 
   function apicall(server, data, address, method, thetype1) {
-    console.log("called apicall");
+    //    console.log("called apicall");
     $.ajax({
       type: 'POST',
       url: server,
