@@ -78,13 +78,11 @@
       for (var x in addr) {
         //    console.log(addr[x]);
 
-        //    getcurrentblock(addr[x], server, "eth_blockNumber", "");
-        //    getbalance(addr[x], server, "eth_getBalance", "latest");
-        //    getbalance(addr[x], server, "eth_getBalance", "pending");
-        fillbalance("latest", addr[x], server);
-        fillbalance("pending", addr[x], server);
-        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>';
-
+        getcurrentblock(addr[x], server, "eth_blockNumber", "");
+        getbalance(addr[x], server, "eth_getBalance", "latest");
+        getbalance(addr[x], server, "eth_getBalance", "pending");
+        $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
+        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
       }
 
     }
@@ -116,7 +114,6 @@
 
 
   function getbalance(address, server, method, thetype1) {
-    //    console.log("called getbalance");
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
@@ -148,14 +145,10 @@
     apicall(server, apicall_data, address, method, thetype1)
   }
 
-  function fillbalance(timeline, address, server) {
-    var lt_balance = getbalance(address, server, "eth_getBalance", timeline);
-    $('balance_' + timeline + '_' + address).empty().append(lt_balance);
-  }
+
 
 
   function apicall(server, data, address, method, thetype1) {
-    //    console.log("called apicall");
     $.ajax({
       type: 'POST',
       url: server,
@@ -170,7 +163,6 @@
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
           return ethbalance;
-          console.log(ethbalance);
 
         } else if (method == 'eth_blockNumber') {
           var curblock = result['result'];
