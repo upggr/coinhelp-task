@@ -151,36 +151,37 @@
 
   function apicall(server, data, address, method, thetype1) {
     $.ajax({
-      type: 'POST',
-      url: server,
-      data: JSON.stringify(data),
-      dataType: 'json',
-      cache: false,
-      contentType: 'application/json',
-      timeout: 15000,
-      success: function(result) {
-        //      console.log(result['result']);
-        if (method == 'eth_getBalance') {
-          var weibalance = result['result'];
-          var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
-          $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
-        } else if (method == 'eth_blockNumber') {
-          var curblock = result['result'];
-          var curblockint = parseInt(curblock, 16)
-          var tr_block = get_transaction_block(server, address, curblock);
-          var transblock = curblockint - 5
-          confs = genprettyconf(curblockint - transblock, 10)
-          $('.confs_' + address).empty().append(confs);
-          //    console.log(curblock);
-          //    console.log(curblockint);
-        } else if (method = "eth_getBlockByNumber") {
-          var thetrans = result['result']['transactions'];
-          thetrans.forEach(function(trans) {
-            if (address == trans['to']) {
-              console.log('transaction registered at block : ' + )
-            }
-            console.log(trans);
-          });
+        type: 'POST',
+        url: server,
+        data: JSON.stringify(data),
+        dataType: 'json',
+        cache: false,
+        contentType: 'application/json',
+        timeout: 15000,
+        success: function(result) {
+          //      console.log(result['result']);
+          if (method == 'eth_getBalance') {
+            var weibalance = result['result'];
+            var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
+            $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
+          } else if (method == 'eth_blockNumber') {
+            var curblock = result['result'];
+            var curblockint = parseInt(curblock, 16)
+            var tr_block = get_transaction_block(server, address, curblock);
+            var transblock = curblockint - 5
+            confs = genprettyconf(curblockint - transblock, 10)
+            $('.confs_' + address).empty().append(confs);
+            //    console.log(curblock);
+            //    console.log(curblockint);
+          } else if (method = "eth_getBlockByNumber") {
+            var thetrans = result['result']['transactions'];
+            thetrans.forEach(function(trans) {
+                if (address == trans['to']) {
+                  console.log('transaction registered at block : ' + );
+                }
+              }
+              console.log(trans);
+            });
           //    console.log(result['result']['transactions']);
 
 
