@@ -81,8 +81,8 @@
         //    getcurrentblock(addr[x], server, "eth_blockNumber", "");
         //    getbalance(addr[x], server, "eth_getBalance", "latest");
         //    getbalance(addr[x], server, "eth_getBalance", "pending");
-        fillbalance("latest", addr[x], server);
-        fillbalance("pending", addr[x], server);
+        //    fillbalance("latest", addr[x], server);
+        //    fillbalance("pending", addr[x], server);
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>';
 
       }
@@ -169,7 +169,7 @@
         if (method == 'eth_getBalance') {
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
-          return ethbalance;
+          fillbalance("thetype1", address, server);
           console.log(ethbalance);
 
         } else if (method == 'eth_blockNumber') {
