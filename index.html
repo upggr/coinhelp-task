@@ -55,7 +55,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="comment">Enter confirmations to show</label>
-          <input class="form-control" name="confirmations_to_show" value="10"></input>
+          <input class="form-control" class="confirmations_to_show" name="confirmations_to_show" value="10"></input>
         </div>
       </div>
 
@@ -94,7 +94,7 @@
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
-    var extra2 = $('input[name=confirmations_to_show]').val();
+    var extra2 = $('.confirmations_to_show]').val();
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
@@ -161,8 +161,7 @@
     var method = "eth_getBlockByNumber";
     var thetype1 = '';
     var extra1 = 'get_confirmations';
-    //  var extra2 = $('input[name=confirmations_to_show]').val();
-    //    console.log(extra2);
+    var extra2 = $('.confirmations_to_show]').val();
     apicall(server, apicall_data, address, method, thetype1, extra1, extra2)
   }
 
