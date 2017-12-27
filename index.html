@@ -78,8 +78,8 @@
       for (var x in addr) {
         //    console.log(addr[x]);
 
-        getcurrentblock(addr[x], server, "eth_blockNumber", "");
-        getbalance(addr[x], server, "eth_getBalance", "latest");
+        getcurrentblock(addr[x], server, "eth_blockNumber", "", "the_currentblock");
+        getbalance(addr[x], server, "eth_getBalance", "latest", "balance_fields");
         getbalance(addr[x], server, "eth_getBalance", "pending");
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
       }
@@ -112,14 +112,14 @@
 
 
 
-  function getbalance(address, server, method, thetype1) {
+  function getbalance(address, server, method, thetype1, extra) {
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
       "params": [address, thetype1],
       "id": 1
     };
-    apicall(server, apicall_data, address, method, thetype1)
+    apicall(server, apicall_data, address, method, thetype1, extra)
   }
 
 
@@ -132,24 +132,25 @@
     };
     var method = "eth_getBlockByNumber";
     var thetype1 = '';
-    apicall(server, apicall_data, address, method, thetype1)
+    var extra = 'get_confirmations';
+    apicall(server, apicall_data, address, method, thetype1, extra)
   }
 
 
-  function getcurrentblock(address, server, method, thetype1) {
+  function getcurrentblock(address, server, method, thetype1, extra) {
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
       "params": [],
       "id": 1
     };
-    apicall(server, apicall_data, address, method, thetype1)
+    apicall(server, apicall_data, address, method, thetype1, extra)
   }
 
 
 
 
-  function apicall(server, data, address, method, thetype1) {
+  function apicall(server, data, address, method, thetype1, extra) {
     $.ajax({
       type: 'POST',
       url: server,
@@ -160,11 +161,11 @@
       timeout: 15000,
       success: function(result) {
         //      console.log(result['result']);
-        if (method == 'eth_getBalance') {
+        if (extra == 'balance_fields') {
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
           $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
-        } else if (method == 'eth_blockNumber') {
+        } else if (extra == 'the_currentblock') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
           var tr_block = get_transaction_block(server, address, curblock);
@@ -173,7 +174,7 @@
           $('.confs_' + address).empty().append(confs);
           //  console.log(curblock);
           console.log(curblockint);
-        } else if (method = "eth_getBlockByNumber") {
+        } else if (extra = "get_confirmations") {
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
             if (trans['to'] != 'null') {
