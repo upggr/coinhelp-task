@@ -175,7 +175,7 @@
           //  console.log(curblock);
           //      console.log(curblockint);
         } else if (extra = "get_confirmations") {
-          getcurrentblock(addr[x], server, "eth_blockNumber", "", "just_the_currentblock");
+          getcurrentblock('', server, "eth_blockNumber", "", "just_the_currentblock");
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
             var theblock = parseInt(trans['blockNumber']);
