@@ -180,7 +180,7 @@
           var transblock = sessionStorage.getItem("transblock_" + address.toUpperCase());
           console.log(transblock);
           var confs = curblockint - transblock;
-          if (confs < extra2 + 1) {
+          if (confs <= extra2 + 1) {
             confs = genprettyconf(confs, extra2)
             $('.confs_' + address).empty().append(confs);
           } else {
