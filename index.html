@@ -119,13 +119,14 @@
 
 
   function getbalance(address, server, method, thetype1) {
+    console.log("called getbalance0");
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
       "params": [address, thetype1],
       "id": 1
     };
-    return apicall(server, apicall_data, address, method, thetype1)
+    apicall(server, apicall_data, address, method, thetype1)
   }
 
 
