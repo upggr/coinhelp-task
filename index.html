@@ -134,6 +134,7 @@
       success: function(result) {
         console.log(result['result']);
         return result['result'];
+        console.log('.balance' + address);
         $('.balance' + address).empty().append('test');
       },
       error: function(xhr, status, error) {
