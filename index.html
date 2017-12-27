@@ -190,12 +190,12 @@
             var rec_addr = trans['to'];
             if (rec_addr) {
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
-                console.log('transaction registered at block : ' + theblock);
+                //      console.log('transaction registered at block : ' + theblock);
                 var transblock = theblock;
               }
             }
           });
-          console.log(transblock);
+          return transblock;
 
         } else if (extra = "just_the_currentblock") {
           console.log(result['result']);
