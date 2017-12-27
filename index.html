@@ -73,8 +73,9 @@
       var addr = rows[y].split("\t");
       for (var x in addr) {
         console.log(addr[x]);
-        var conf_balls = genprettyconf(3, 10)
-        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td>' + getbalance(addr[x], server) + '</td><td></td><td>' + conf_balls + '</td></tr>'
+        var conf_balls = genprettyconf(3, 10);
+        getbalance(addr[x], server);
+        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance' + addr[x] + '"></td><td></td><td>' + conf_balls + '</td></tr>'
       }
 
     }
@@ -117,11 +118,11 @@
       "params": [address, "latest"],
       "id": 1
     };
-    apicall(server, apicall_data)
+    apicall(server, apicall_data, address)
   }
 
 
-  function apicall(server, data) {
+  function apicall(server, data, address) {
     $.ajax({
       type: 'POST',
       url: server,
@@ -132,7 +133,8 @@
       timeout: 15000,
       success: function(result) {
         console.log(result['result']);
-        return result['result']
+        return result['result'];
+        $('.balance' + address).val('test');
       },
       error: function(xhr, status, error) {
         console.warn(xhr.responseText)
