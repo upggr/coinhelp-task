@@ -218,8 +218,8 @@
           var confs = curblockint - transblock;
           if (confs == 3) {
             // notify user
-            $('.the_alert').empty().append('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
-            //      alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
+            //  $('.the_alert').empty().append('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
+            alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
           } else {
             $('.the_alert').empty();
           }
