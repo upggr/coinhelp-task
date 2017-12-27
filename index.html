@@ -180,8 +180,8 @@
           }
           var transblock = sessionStorage.getItem("transblock");
           console.log(transblock);
-          var transblock = curblockint - 5
-          confs = genprettyconf(curblockint - transblock, 10)
+          var confs = curblockint - transblock;
+          confs = genprettyconf(confs, 10)
           $('.confs_' + address).empty().append(confs);
         } else if (extra = "get_confirmations") {
           var thetrans = result['result']['transactions'];
