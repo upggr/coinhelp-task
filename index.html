@@ -26,6 +26,11 @@
       display: inline-block;
       margin-left: 20px;
     }
+
+    .the_alert {
+      color: #f00;
+      font-weight: bold;
+    }
   </style>
 
 
@@ -73,6 +78,13 @@
 
     <div class="row">
       <div class="col-md-12">
+        <div id="alert" class="the_alert"></div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
         <div id="address_monitor" class="table-responsive"></div>
       </div>
 
@@ -95,17 +107,14 @@
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
     var extra2 = $('.confirmations_to_show').val();
-    console.log(extra2);
-    //  console.log(data);
+
     var rows = data.split("\n");
     var rowsloop = '';
-    //  var server = $('textarea[name=rpc_server_address]').val();
+
     var server = 'http://localhost:9001';
     for (var y in rows) {
       var addr = rows[y].split("\t");
       for (var x in addr) {
-        //    console.log(addr[x]);
-
         getcurrentblock(addr[x], server, "eth_blockNumber", "", "the_currentblock", extra2);
 
         getbalance(addr[x], server, "eth_getBalance", "latest", "balance_fields", extra2);
@@ -208,10 +217,13 @@
           //  console.log(transblock);
           var confs = curblockint - transblock;
           if (confs == 3) {
-            alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
+            // notify user
+            $('.the_alert').empty().append('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint)
+            //      alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
+          } else {
+            $('.the_alert').empty();
           }
           if (confs <= extra2 + 1 && confs < extra2) {
-            console.log(extra2);
             confs = genprettyconf(confs, extra2)
             $('.confs_' + address).empty().append(confs);
           } else {
