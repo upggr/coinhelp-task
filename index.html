@@ -78,8 +78,9 @@
       for (var x in addr) {
         //    console.log(addr[x]);
         var conf_balls = genprettyconf(3, 10);
-        getdata(addr[x], server, "eth_getBalance");
-        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance' + addr[x] + '"></td><td></td><td>' + conf_balls + '</td></tr>'
+        getbalance(addr[x], server, "eth_getBalance", "latest");
+        getbalance(addr[x], server, "eth_getBalance", "pending");
+        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td>' + conf_balls + '</td></tr>'
       }
 
     }
@@ -110,14 +111,14 @@
 
 
 
-  function getdata(address, server, method) {
+  function getbalance(address, server, method, thetype1) {
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
-      "params": [address, "latest"],
+      "params": [address, thetype1],
       "id": 1
     };
-    apicall(server, apicall_data, address, method)
+    apicall(server, apicall_data, address, method, thetype1)
   }
 
 
@@ -135,7 +136,7 @@
         if (method == 'eth_getBalance') {
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
-          $('.balance' + address).empty().append(ethbalance);
+          $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
         }
       },
       error: function(xhr, status, error) {
