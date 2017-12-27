@@ -181,8 +181,13 @@
           var transblock = sessionStorage.getItem("transblock");
           console.log(transblock);
           var confs = curblockint - transblock;
-          confs = genprettyconf(confs, 10)
-          $('.confs_' + address).empty().append(confs);
+          if (confs < 10 + 1) {
+            confs = genprettyconf(confs, 10)
+            $('.confs_' + address).empty().append(confs);
+          } else {
+            $('.confs_' + address).empty().append('No recent transaction in the last 10 blocks');
+          }
+
         } else if (extra = "get_confirmations") {
           var thetrans = result['result']['transactions'];
           //    console.log(thetrans);
