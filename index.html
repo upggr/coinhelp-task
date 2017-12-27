@@ -53,12 +53,21 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="comment">Enter refresh interval in seconds</label>
-          <input class="form-control" name="refresh_sched" rows="5" value="4"></input>
+          <input class="form-control" name="refresh_sched" value="4"></input>
         </div>
       </div>
 
     </div>
 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="comment">Enter confirmations to show</label>
+          <input class="form-control" name="confirmations_to_show" value="10"></input>
+        </div>
+      </div>
+
+    </div>
 
     <div class="row">
       <div class="col-md-12">
@@ -89,11 +98,11 @@
 
   window.setInterval(function() {
     generateTable();
-  }, 5000);
+  }, $('textarea[name=refresh_sched]').val() * 1000);
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
-    var extra2 = $('textarea[name=refresh_sched]').val();
+    var extra2 = $('textarea[name=confirmations_to_show]').val();
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
