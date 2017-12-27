@@ -4,9 +4,6 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css">
-
-
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script>
@@ -47,15 +44,16 @@
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
-    var conf_balls = '';
-    for (i = 0; i <= 10; i++) {
-      conf_balls += '<span class="conf' + i + '">conf' + i + '</span>';
-    }
+
     for (var y in rows) {
       var addr = rows[y].split("\t");
       for (var x in addr) {
         console.log(addr[x]);
-        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td></td><td></td><td></td></tr>'
+        var conf_balls = '';
+        for (i = 0; i <= 10; i++) {
+          conf_balls += '<span class="conf' + i + '">conf' + i + '</span>';
+        }
+        rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td></td><td></td><td>' + conf_balls + '</td></tr>'
       }
 
     }
