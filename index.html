@@ -176,7 +176,7 @@
         } else if (method = "eth_getBlockByNumber") {
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
-            if (JSON.parse(trans['to']) != 'null') {
+            if (trans['to'] != 'null') {
               thereceivingaddress = trans['to'];
               console.log(address, thereceivingaddress);
               if (address.toUpperCase() == thereceivingaddress.toUpperCase()) {
