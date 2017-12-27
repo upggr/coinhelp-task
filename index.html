@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/5.0.0/bignumber.min.js"></script>
+
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     #circlegreen {
@@ -74,7 +78,7 @@
       for (var x in addr) {
         console.log(addr[x]);
         var conf_balls = genprettyconf(3, 10);
-        getbalance(addr[x], server);
+        getdata(addr[x], server, "eth_getBalance");
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance' + addr[x] + '"></td><td></td><td>' + conf_balls + '</td></tr>'
       }
 
@@ -95,12 +99,7 @@
     return confballs;
   }
 
-  var apicall_data = {
-    "jsonrpc": "2.0",
-    "method": "eth_getBalance",
-    "params": ["0xa38fb4fFfE602F95b3703B69D1246C7ef279dD7D", "latest"],
-    "id": 1
-  };
+
 
   var get_height = {
     method: "eth_blockNumber",
@@ -111,18 +110,18 @@
 
 
 
-  function getbalance(address, server) {
+  function getdata(address, server, method) {
     var apicall_data = {
       "jsonrpc": "2.0",
-      "method": "eth_getBalance",
+      "method": method,
       "params": [address, "latest"],
       "id": 1
     };
-    apicall(server, apicall_data, address)
+    apicall(server, apicall_data, address, method)
   }
 
 
-  function apicall(server, data, address) {
+  function apicall(server, data, address, method) {
     $.ajax({
       type: 'POST',
       url: server,
@@ -132,11 +131,10 @@
       contentType: 'application/json',
       timeout: 15000,
       success: function(result) {
-
         console.log(result['result']);
-        //  return result['result'];
-        console.log('.balance' + address);
-        $('.balance' + address).empty().append(result['result']);
+        if (method == 'eth_getBalance') {
+          $('.balance' + address).empty().append(result['result']);
+        }
       },
       error: function(xhr, status, error) {
         console.warn(xhr.responseText)
