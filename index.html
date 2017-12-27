@@ -39,7 +39,7 @@
 <script>
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
-    console.log(data);
+    //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
     var conf_balls = '';
@@ -50,6 +50,7 @@
       var addr = rows[y].split("\t");
       for (var x in addr) {
         console.log(addr[x]);
+        rowsloop += '<tr><td>' + addr[x] + '</td><td></td><td></td><td></td></tr>'
       }
 
     }
