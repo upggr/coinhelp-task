@@ -81,13 +81,10 @@
         //    getcurrentblock(addr[x], server, "eth_blockNumber", "");
         //    getbalance(addr[x], server, "eth_getBalance", "latest");
         //    getbalance(addr[x], server, "eth_getBalance", "pending");
-
+        fillbalance("latest", addr[x], server);
+        fillbalance("pending", addr[x], server);
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>';
-        var lt_balance = getbalance(addr[x], server, "eth_getBalance", "latest");
-        console.log(lt_balance);
-        var pd_balance = getbalance(addr[x], server, "eth_getBalance", "pending");
-        $('balance_latest_' + addr[x]).empty().append(lt_balance);
-        $('balance_pending_' + addr[x]).empty().append(pd_balance);
+
       }
 
     }
@@ -151,7 +148,10 @@
     apicall(server, apicall_data, address, method, thetype1)
   }
 
-
+  function fillbalance(timeline, address, server) {
+    var lt_balance = getbalance(addr[x], server, "eth_getBalance", timeline);
+    $('balance_' + timeline + '_' + address).empty().append(lt_balance);
+  }
 
 
   function apicall(server, data, address, method, thetype1) {
