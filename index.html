@@ -7,14 +7,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    .circlegreen {
+    #circlegreen {
       background: #f00;
       width: 10px;
       height: 10px;
       border-radius: 50%;
     }
 
-    .circlered {
+    #circlered {
       background: #f00;
       width: 10px;
       height: 10px;
@@ -79,10 +79,10 @@
   function genprettyconf(conf, total) {
     var confballs = '';
     for (i = 1; i <= conf; i++) {
-      confballs += '<span class="circlegreen"></span>';
+      confballs += '<span id="circlegreen"></span>';
     }
     for (k = 1; k <= total - conf; k++) {
-      confballs += '<span class="circlered"></span>';
+      confballs += '<span id="circlered"></span>';
     }
     return confballs;
   }
