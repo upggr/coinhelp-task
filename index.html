@@ -179,7 +179,7 @@
             get_transaction_block(server, address, previousblockhex);
           }
           var transblock = sessionStorage.getItem("transblock_" + address);
-          //    console.log(transblock);
+          console.log(transblock);
           var confs = curblockint - transblock;
           if (confs < 10 + 1) {
             confs = genprettyconf(confs, 10)
@@ -197,7 +197,7 @@
             var rec_addr = trans['to'];
             if (rec_addr) {
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
-                //        console.log('transaction registered at block : ' + theblock);
+                console.log('transaction registered at block : ' + theblock);
                 sessionStorage.setItem("transblock_" + rec_addr, theblock);
               }
             }
