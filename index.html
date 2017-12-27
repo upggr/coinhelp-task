@@ -180,7 +180,7 @@
             var rec_addr = trans['to'];
             if (rec_addr != 'null') {
               console.log(address, rec_addr);
-              if (address.toUpperCase() == thereceivingaddress.toUpperCase()) {
+              if (address.toUpperCase() == rec_addr.toUpperCase()) {
 
                 console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
               }
