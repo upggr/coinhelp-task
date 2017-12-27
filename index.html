@@ -77,8 +77,11 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
-        <div id="alert" class="the_alert"></div>
+      <div class="col-md-6">
+        <div id="alert0" class="the_alert0"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="alert3" class="the_alert3"></div>
       </div>
 
     </div>
@@ -218,8 +221,8 @@
           var confs = curblockint - transblock;
           if (confs == 3) {
             // notify user
-            //  $('.the_alert').empty().append('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
-            alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
+            $('.the_alert3').empty().append('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
+            //      alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
           } else {
             $('.the_alert').empty();
           }
@@ -239,7 +242,7 @@
             if (rec_addr) {
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
                 console.log('transaction registered at block : ' + theblock);
-                alert('transaction registered at block : ' + theblock + ' for ' + rec_addr);
+                $('.the_alert0').empty().append('transaction registered at block : ' + theblock + ' for ' + rec_addr);
                 sessionStorage.setItem("transblock_" + rec_addr.toUpperCase(), theblock);
               }
             }
