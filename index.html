@@ -109,21 +109,42 @@
   };
 
   //165.227.167.176
-  $.ajax({
-    type: 'POST',
-    url: 'http://localhost:9001',
-    data: JSON.stringify(apicall_data),
-    dataType: 'json',
-    cache: false,
-    contentType: 'application/json',
-    timeout: 15000,
-    success: function(result) {
-      console.log(result);
-    },
-    error: function(xhr, status, error) {
-      console.warn(xhr.responseText)
-    }
-  });
+  apiserver = 'http://localhost:9001';
+  address = '0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5';
+  getbalance(address, server);
+
+
+  function getbalance(address, server) {
+    var apicall_data = {
+      "jsonrpc": "2.0",
+      "method": "eth_getBalance",
+      "params": [address, "latest"],
+      "id": 1
+    };
+    apicall(server, apicall_data)
+  }
+
+
+  function apicall(server, data) {
+    $.ajax({
+      type: 'POST',
+      url: server,
+      data: JSON.stringify(data),
+      dataType: 'json',
+      cache: false,
+      contentType: 'application/json',
+      timeout: 15000,
+      success: function(result) {
+        console.log(result);
+      },
+      error: function(xhr, status, error) {
+        console.warn(xhr.responseText)
+      }
+    });
+
+  }
 </script>
+
+
 
 </html>
