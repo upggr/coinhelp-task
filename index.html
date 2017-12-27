@@ -131,7 +131,7 @@
       contentType: 'application/json',
       timeout: 15000,
       success: function(result) {
-        console.log(result);
+        console.log(result['result']);
         return (result['result'])
       },
       error: function(xhr, status, error) {
