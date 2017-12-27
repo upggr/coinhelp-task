@@ -174,7 +174,12 @@
           //    console.log(curblock);
           //    console.log(curblockint);
         } else if (method = "eth_getBlockByNumber") {
+          var thetrans = result['result']['transactions'];
+          thetrans.forEach(function(trans) {
+            console.log(trans);
+          });
           console.log(result['result']['transactions']);
+
 
         }
       },
