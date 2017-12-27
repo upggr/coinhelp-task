@@ -68,7 +68,8 @@
   }, 5000);
 
   function generateTable() {
-    var data = $('textarea[name=pasted_data]').val();
+    var data = $('textarea[name=pasted_data]').val
+    var extra1 = 10;
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
@@ -78,10 +79,10 @@
       for (var x in addr) {
         //    console.log(addr[x]);
 
-        getcurrentblock(addr[x], server, "eth_blockNumber", "", "the_currentblock");
+        getcurrentblock(addr[x], server, "eth_blockNumber", "", "the_currentblock", extra2);
 
-        getbalance(addr[x], server, "eth_getBalance", "latest", "balance_fields");
-        getbalance(addr[x], server, "eth_getBalance", "pending", "balance_fields");
+        getbalance(addr[x], server, "eth_getBalance", "latest", "balance_fields", extra2);
+        getbalance(addr[x], server, "eth_getBalance", "pending", "balance_fields", extra2);
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
       }
 
@@ -113,14 +114,14 @@
 
 
 
-  function getbalance(address, server, method, thetype1, extra) {
+  function getbalance(address, server, method, thetype1, extra1, extra2) {
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
       "params": [address, thetype1],
       "id": 1
     };
-    apicall(server, apicall_data, address, method, thetype1, extra)
+    apicall(server, apicall_data, address, method, thetype1, extra1, extra2)
   }
 
 
@@ -133,25 +134,26 @@
     };
     var method = "eth_getBlockByNumber";
     var thetype1 = '';
-    var extra = 'get_confirmations';
-    apicall(server, apicall_data, address, method, thetype1, extra)
+    var extra1 = 'get_confirmations';
+    var extra2 = '';
+    apicall(server, apicall_data, address, method, thetype1, extra1, extra2)
   }
 
 
-  function getcurrentblock(address, server, method, thetype1, extra) {
+  function getcurrentblock(address, server, method, thetype1, extra1, extra2) {
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
       "params": [],
       "id": 1
     };
-    apicall(server, apicall_data, address, method, thetype1, extra)
+    apicall(server, apicall_data, address, method, thetype1, extra1, extra2)
   }
 
 
 
 
-  function apicall(server, data, address, method, thetype1, extra) {
+  function apicall(server, data, address, method, thetype1, extra1, extra2) {
     $.ajax({
       type: 'POST',
       url: server,
@@ -162,16 +164,13 @@
       timeout: 15000,
       success: function(result) {
         //      console.log(result['result']);
-        if (extra == 'balance_fields') {
+        if (extra1 == 'balance_fields') {
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
           $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
-        } else if (extra == 'the_currentblock') {
+        } else if (extra1 == 'the_currentblock') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
-          //      console.log(curblockint);
-          //    var transblock = get_transaction_block(server, address, curblock);
-
           for (m = 0; m <= 3; m++) {
             var previousblock = curblockint - m;
             var previousblockhex = '0x' + previousblock.toString(16);
@@ -181,16 +180,15 @@
           var transblock = sessionStorage.getItem("transblock_" + address.toUpperCase());
           console.log(transblock);
           var confs = curblockint - transblock;
-          if (confs < 10 + 1) {
-            confs = genprettyconf(confs, 10)
+          if (confs < extra2 + 1) {
+            confs = genprettyconf(confs, extra2)
             $('.confs_' + address).empty().append(confs);
           } else {
             $('.confs_' + address).empty().append('No recent transaction in the last 10 blocks');
           }
 
-        } else if (extra = "get_confirmations") {
+        } else if (extra1 = "get_confirmations") {
           var thetrans = result['result']['transactions'];
-          //    console.log(thetrans);
           var bloc_array_top = {};
           thetrans.forEach(function(trans) {
             var theblock = parseInt(trans['blockNumber']);
