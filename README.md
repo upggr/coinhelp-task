@@ -8,13 +8,15 @@ sudo apt-get install software-properties-common
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update
 sudo apt-get install ethereum
+sudo apt install geth
 
 If this was a 512 MB droplet you need to add a 2G swap and set swapiness to 30
 
-Sync get on the rinkeby network :
+Sync geth on the rinkeby network :
+
 geth --rinkeby --rpc --rpccorsdomain "*"
 
-On your local machine create tunnet on port 9001
+On your local machine create tunnel on port 9001
 
 ssh  -L 9001:127.0.0.1:8545 root@165.227.167.176
 
