@@ -132,10 +132,11 @@
       contentType: 'application/json',
       timeout: 15000,
       success: function(result) {
+
         console.log(result['result']);
         //  return result['result'];
         console.log('.balance' + address);
-        $('.balance' + address).empty().append('test');
+        $('.balance' + address).empty().append(result['result']);
       },
       error: function(xhr, status, error) {
         console.warn(xhr.responseText)
