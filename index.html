@@ -64,6 +64,10 @@
 <script>
   $('textarea[name=pasted_data]').val("0x883ac66a03c5b4994215BEfd28d990cf16BeB4C5\n0xa38fb4fFfE602F95b3703B69D1246C7ef279dD7D");
 
+  window.setInterval(function() {
+    generateTable();
+  }, 5000);
+
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
     //  console.log(data);
