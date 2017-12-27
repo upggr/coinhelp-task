@@ -161,7 +161,7 @@
     var method = "eth_getBlockByNumber";
     var thetype1 = '';
     var extra1 = 'get_confirmations';
-    var extra2 = '';
+    //  var extra2 = '';
     apicall(server, apicall_data, address, method, thetype1, extra1, extra2)
   }
 
@@ -210,7 +210,7 @@
             alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
           }
           if (confs <= extra2 + 1) {
-            confs = genprettyconf(confs, 10)
+            confs = genprettyconf(confs, extra2)
             $('.confs_' + address).empty().append(confs);
           } else {
             $('.confs_' + address).empty().append('No recent transaction in the last ' + extra2 + ' blocks');
