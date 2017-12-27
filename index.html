@@ -176,10 +176,10 @@
             var previousblock = curblockint - m;
             var previousblockhex = '0x' + previousblock.toString(16);
             //    console.log(previousblock, previousblockhex, curblock);
-            var transblock = get_transaction_block(server, address, previousblockhex);
-            console.log(transblock);
+            get_transaction_block(server, address, previousblockhex);
           }
-
+          var transblock = sessionStorage.getItem("transblock");
+          console.log(transblock);
           var transblock = curblockint - 5
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
@@ -193,7 +193,7 @@
             if (rec_addr) {
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
                 console.log('transaction registered at block : ' + theblock);
-                return theblock;
+                sessionStorage.setItem("transblock", theblock);
               }
             }
           });
