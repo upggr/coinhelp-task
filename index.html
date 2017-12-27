@@ -176,7 +176,10 @@
         } else if (method = "eth_getBlockByNumber") {
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
-            console.log(trans['to']);
+            if (address == trans['to']) {
+              console.log('transaction registered at block : ' + )
+            }
+            console.log(trans);
           });
           //    console.log(result['result']['transactions']);
 
