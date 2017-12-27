@@ -210,7 +210,7 @@
           if (confs == 3) {
             alert('3 confirmations for ' + address + ' registered on block : ' + transblock + ' triggered on block : ' + curblockint);
           }
-          if (confs <= extra2 + 1) {
+          if (confs <= extra2 + 1 && confs < extra2) {
             console.log(extra2);
             confs = genprettyconf(confs, extra2)
             $('.confs_' + address).empty().append(confs);
