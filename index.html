@@ -43,12 +43,11 @@
     var rows = data.split("\n");
 
     var table = $('<table />');
-
     for (var y in rows) {
       var cells = rows[y].split("\t");
       var row = $('<tr />');
       for (var x in cells) {
-        row.append('<td>' + cells[x] + '</td>');
+        row.append('<td>' + cells[x] + '</td><td class="conf1"></td><td class="conf2"></td>');
       }
       table.append(row);
     }
