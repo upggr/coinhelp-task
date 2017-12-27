@@ -179,8 +179,7 @@
           thetrans.forEach(function(trans) {
             var rec_addr = trans['to'];
             if (rec_addr != 'null') {
-              thereceivingaddress = rec_addr;
-              console.log(address, thereceivingaddress);
+              console.log(address, rec_addr);
               if (address.toUpperCase() == thereceivingaddress.toUpperCase()) {
 
                 console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
