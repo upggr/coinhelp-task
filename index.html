@@ -173,29 +173,25 @@
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
           //  console.log(curblock);
-          console.log(curblockint);
+          //      console.log(curblockint);
         } else if (extra = "get_confirmations") {
+          getcurrentblock(addr[x], server, "eth_blockNumber", "", "just_the_currentblock");
           var thetrans = result['result']['transactions'];
-
           thetrans.forEach(function(trans) {
             var theblock = parseInt(trans['blockNumber']);
             var rec_addr = trans['to'];
             if (rec_addr) {
-              console.log(address, rec_addr, theblock);
+              //      console.log(address, rec_addr, theblock);
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
 
-                console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
+                //        console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
               }
             }
-
-
-
-            //      console.log(trans['to']);
           });
-          //    console.log(result['result']['transactions']);
-
-
+        } else if (extra = "just_the_currentblock") {
+          console.log(result['result']);
         }
+
       },
       error: function(xhr, status, error) {
         console.warn(xhr.responseText)
