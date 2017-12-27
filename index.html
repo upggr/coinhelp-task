@@ -97,7 +97,8 @@
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
-    var server = $('textarea[name=rpc_server_address]').val();
+    //  var server = $('textarea[name=rpc_server_address]').val();
+    var server = 'http://localhost:9001';
     for (var y in rows) {
       var addr = rows[y].split("\t");
       for (var x in addr) {
