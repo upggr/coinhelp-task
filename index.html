@@ -152,95 +152,97 @@
 
   function apicall(server, data, address, method, thetype1, extra) {
     $.ajax({
-        type: 'POST',
-        url: server,
-        data: JSON.stringify(data),
-        dataType: 'json',
-        cache: false,
-        contentType: 'application/json',
-        timeout: 15000,
-        success: function(result) {
-          //      console.log(result['result']);
-          if (extra == 'balance_fields') {
-            var weibalance = result['result'];
-            var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
-            $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
-          } else if (extra == 'the_currentblock') {
-            var curblock = result['result'];
-            var curblockint = parseInt(curblock, 16)
-            var tr_block = get_transaction_block(server, address, curblock);
-            var transblock = curblockint - 5
-            confs = genprettyconf(curblockint - transblock, 10)
-            $('.confs_' + address).empty().append(confs);
-            //  console.log(curblock);
-            console.log(curblockint);
-          } else if (extra = "get_confirmations") {
-            var thetrans = result['result']['transactions'];
-            var theblock = parseInt(trans['blockNumber']; thetrans.forEach(function(trans) {
-                var rec_addr = trans['to'];
-                if (rec_addr) {
-                  console.log(address, rec_addr, theblock);
-                  if (address.toUpperCase() == rec_addr.toUpperCase()) {
+      type: 'POST',
+      url: server,
+      data: JSON.stringify(data),
+      dataType: 'json',
+      cache: false,
+      contentType: 'application/json',
+      timeout: 15000,
+      success: function(result) {
+        //      console.log(result['result']);
+        if (extra == 'balance_fields') {
+          var weibalance = result['result'];
+          var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
+          $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
+        } else if (extra == 'the_currentblock') {
+          var curblock = result['result'];
+          var curblockint = parseInt(curblock, 16)
+          var tr_block = get_transaction_block(server, address, curblock);
+          var transblock = curblockint - 5
+          confs = genprettyconf(curblockint - transblock, 10)
+          $('.confs_' + address).empty().append(confs);
+          //  console.log(curblock);
+          console.log(curblockint);
+        } else if (extra = "get_confirmations") {
+          var thetrans = result['result']['transactions'];
 
-                    console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
-                  }
-                }
+          thetrans.forEach(function(trans) {
+            var theblock = parseInt(trans['blockNumber']);
+            var rec_addr = trans['to'];
+            if (rec_addr) {
+              console.log(address, rec_addr, theblock);
+              if (address.toUpperCase() == rec_addr.toUpperCase()) {
 
-
-
-                //      console.log(trans['to']);
-              });
-              //    console.log(result['result']['transactions']);
-
-
+                console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
+              }
             }
-          },
-          error: function(xhr, status, error) {
-            console.warn(xhr.responseText)
+
+
+
+            //      console.log(trans['to']);
+          });
+          //    console.log(result['result']['transactions']);
+
+
+        }
+      },
+      error: function(xhr, status, error) {
+        console.warn(xhr.responseText)
+      }
+    });
+
+  }
+
+
+
+
+  function getTransactionsByAccount(myaccount, startBlockNumber, endBlockNumber) {
+    if (endBlockNumber == null) {
+      endBlockNumber = eth.blockNumber;
+      console.log("Using endBlockNumber: " + endBlockNumber);
+    }
+    if (startBlockNumber == null) {
+      startBlockNumber = endBlockNumber - 1000;
+      console.log("Using startBlockNumber: " + startBlockNumber);
+    }
+    console.log("Searching for transactions to/from account \"" + myaccount + "\" within blocks " + startBlockNumber + " and " + endBlockNumber);
+
+    for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+      if (i % 1000 == 0) {
+        console.log("Searching block " + i);
+      }
+      var block = eth.getBlock(i, true);
+      if (block != null && block.transactions != null) {
+        block.transactions.forEach(function(e) {
+          if (myaccount == "*" || myaccount == e.from || myaccount == e.to) {
+            console.log("  tx hash          : " + e.hash + "\n" +
+              "   nonce           : " + e.nonce + "\n" +
+              "   blockHash       : " + e.blockHash + "\n" +
+              "   blockNumber     : " + e.blockNumber + "\n" +
+              "   transactionIndex: " + e.transactionIndex + "\n" +
+              "   from            : " + e.from + "\n" +
+              "   to              : " + e.to + "\n" +
+              "   value           : " + e.value + "\n" +
+              "   time            : " + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + "\n" +
+              "   gasPrice        : " + e.gasPrice + "\n" +
+              "   gas             : " + e.gas + "\n" +
+              "   input           : " + e.input);
           }
-        });
-
-    }
-
-
-
-
-    function getTransactionsByAccount(myaccount, startBlockNumber, endBlockNumber) {
-      if (endBlockNumber == null) {
-        endBlockNumber = eth.blockNumber;
-        console.log("Using endBlockNumber: " + endBlockNumber);
-      }
-      if (startBlockNumber == null) {
-        startBlockNumber = endBlockNumber - 1000;
-        console.log("Using startBlockNumber: " + startBlockNumber);
-      }
-      console.log("Searching for transactions to/from account \"" + myaccount + "\" within blocks " + startBlockNumber + " and " + endBlockNumber);
-
-      for (var i = startBlockNumber; i <= endBlockNumber; i++) {
-        if (i % 1000 == 0) {
-          console.log("Searching block " + i);
-        }
-        var block = eth.getBlock(i, true);
-        if (block != null && block.transactions != null) {
-          block.transactions.forEach(function(e) {
-            if (myaccount == "*" || myaccount == e.from || myaccount == e.to) {
-              console.log("  tx hash          : " + e.hash + "\n" +
-                "   nonce           : " + e.nonce + "\n" +
-                "   blockHash       : " + e.blockHash + "\n" +
-                "   blockNumber     : " + e.blockNumber + "\n" +
-                "   transactionIndex: " + e.transactionIndex + "\n" +
-                "   from            : " + e.from + "\n" +
-                "   to              : " + e.to + "\n" +
-                "   value           : " + e.value + "\n" +
-                "   time            : " + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + "\n" +
-                "   gasPrice        : " + e.gasPrice + "\n" +
-                "   gas             : " + e.gas + "\n" +
-                "   input           : " + e.input);
-            }
-          })
-        }
+        })
       }
     }
+  }
 </script>
 
 
