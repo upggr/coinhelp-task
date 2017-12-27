@@ -154,7 +154,7 @@
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
 
-          confs = genprettyconf(3, 10)
+          confs = genprettyconf(curblockint - curblockint + 4, 10)
           $('.confs_' + address).empty().append(confs);
           console.log(curblockint);
         }
