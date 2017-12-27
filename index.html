@@ -94,7 +94,7 @@
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
-    var extra2 = $('.confirmations_to_show]').val();
+    var extra2 = $('.confirmations_to_show').val();
     //  console.log(data);
     var rows = data.split("\n");
     var rowsloop = '';
@@ -161,7 +161,7 @@
     var method = "eth_getBlockByNumber";
     var thetype1 = '';
     var extra1 = 'get_confirmations';
-    var extra2 = $('.confirmations_to_show]').val();
+    var extra2 = $('.confirmations_to_show').val();
     apicall(server, apicall_data, address, method, thetype1, extra1, extra2)
   }
 
