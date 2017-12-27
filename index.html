@@ -81,7 +81,6 @@
         getcurrentblock(addr[x], server, "eth_blockNumber", "");
         getbalance(addr[x], server, "eth_getBalance", "latest");
         getbalance(addr[x], server, "eth_getBalance", "pending");
-        $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
         rowsloop += '<tr class="tr-class-1"><td class="td-class-1">' + addr[x] + '</td><td class="balance_latest_' + addr[x] + '"></td><td class="balance_pending_' + addr[x] + '"></td><td class="confs_' + addr[x] + '"></td></tr>'
       }
 
@@ -163,7 +162,7 @@
           var weibalance = result['result'];
           var ethbalance = parseInt(weibalance, 16) / Math.pow(10, 18);
           return ethbalance;
-
+          $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
         } else if (method == 'eth_blockNumber') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
