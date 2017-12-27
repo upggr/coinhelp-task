@@ -212,7 +212,7 @@
           }
           if (confs <= extra2 + 1) {
             console.log(extra2);
-            confs = genprettyconf(confs, extra2)
+            confs = genprettyconf(confs, 10)
             $('.confs_' + address).empty().append(confs);
           } else {
             $('.confs_' + address).empty().append('No recent transaction in the last ' + extra2 + ' blocks');
