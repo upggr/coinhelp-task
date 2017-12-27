@@ -165,12 +165,13 @@
         } else if (method == 'eth_blockNumber') {
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
-
-          confs = genprettyconf(curblockint - curblockint + 4, 10)
+          var transblock = curblockint = 5
+          confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
           console.log(curblockint);
         } else if (method = "eth_getBlock") {
           console.log(result['result']);
+
         }
       },
       error: function(xhr, status, error) {
