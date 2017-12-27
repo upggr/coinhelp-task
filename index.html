@@ -170,13 +170,14 @@
           var curblock = result['result'];
           var curblockint = parseInt(curblock, 16)
           console.log(curblockint);
-          var transblock = get_transaction_block(server, address, curblock);
-          console.log(transblock);
+          //    var transblock = get_transaction_block(server, address, curblock);
+
           for (m = 0; m <= 3; m++) {
             var previousblock = curblockint - m;
             var previousblockhex = '0x' + previousblock.toString(16);
             //    console.log(previousblock, previousblockhex, curblock);
-            get_transaction_block(server, address, previousblockhex);
+            var transblock = get_transaction_block(server, address, previousblockhex);
+            console.log(transblock);
           }
 
           var transblock = curblockint - 5
