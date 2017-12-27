@@ -152,7 +152,8 @@
           $('.balance_' + thetype1 + '_' + address).empty().append(ethbalance);
         } else if (method == 'eth_blockNumber') {
           var curblock = result['result'];
-          var curblockint = parseInt(curblock, 16) / Math.pow(10, 18);
+          var curblockint = parseInt(curblock, 16)
+
           confs = genprettyconf(3, 10)
           //    $('.confs_' + address).empty().append(confs);
           console.log(curblockint);
