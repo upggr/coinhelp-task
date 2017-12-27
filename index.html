@@ -172,8 +172,8 @@
           var transblock = curblockint - 5
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
-          console.log(curblock);
-          console.log(curblockint);
+          //    console.log(curblock);
+          //    console.log(curblockint);
         } else if (extra = "get_confirmations") {
           //    getcurrentblock('', server, "eth_blockNumber", "", "just_the_currentblock");
           var thetrans = result['result']['transactions'];
@@ -181,10 +181,9 @@
             var theblock = parseInt(trans['blockNumber']);
             var rec_addr = trans['to'];
             if (rec_addr) {
-              //      console.log(address, rec_addr, theblock);
+              console.log(address, rec_addr, theblock);
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
-
-                //        console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
+                console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
               }
             }
           });
