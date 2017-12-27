@@ -178,7 +178,7 @@
           thetrans.forEach(function(trans) {
             //    console.log(address, trans['to'], trans['blockNumber']);
             console.log(address == trans['to']);
-            if (trans['to']) {
+            if (address == trans['to']) {
               console.log('transaction registered at block : ' + parseInt(trans['blockNumber'], 16));
             }
 
