@@ -172,8 +172,8 @@
           console.log(curblockint);
           for (m = 0; m <= 10; m++) {
             var previousblock = curblockint - m;
-            var previousblockhex = curblockint - m;
-            console.log(previousblockhex);
+            var previousblockhex = previousblock.toString(16);
+            console.log(previousblock, previousblockhex);
             get_transaction_block(server, address, previousblockhex);
           }
 
