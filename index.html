@@ -184,7 +184,7 @@
             confs = genprettyconf(confs, extra2)
             $('.confs_' + address).empty().append(confs);
           } else {
-            $('.confs_' + address).empty().append('No recent transaction in the last 10 blocks');
+            $('.confs_' + address).empty().append('No recent transaction in the last ' + extra2 + ' blocks');
           }
 
         } else if (extra1 = "get_confirmations") {
