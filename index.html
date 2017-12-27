@@ -52,8 +52,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="comment">Enter refresh interval in seconds</label>
-          <input class="form-control" name="refresh_sched" value="4"></input>
+          <label for="comment">Enter refresh interval in miliseconds</label>
+          <input class="form-control" name="refresh_sched" value="4000"></input>
         </div>
       </div>
 
@@ -98,7 +98,7 @@
 
   window.setInterval(function() {
     generateTable();
-  }, 5000);
+  }, $('textarea[name=refresh_sched]').val());
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
