@@ -189,7 +189,10 @@
               }
             }
           });
-          console.log(bloc_array_top);
+          if bloc_array_top.length > 0 {
+            console.log(bloc_array_top);
+          }
+
         } else if (extra = "just_the_currentblock") {
           console.log(result['result']);
         }
