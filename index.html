@@ -119,7 +119,7 @@
 
 
   function getbalance(address, server, method, thetype1) {
-    console.log("called getbalance0");
+    console.log("called getbalance");
     var apicall_data = {
       "jsonrpc": "2.0",
       "method": method,
@@ -155,6 +155,7 @@
 
 
   function apicall(server, data, address, method, thetype1) {
+    console.log("called apicall");
     $.ajax({
       type: 'POST',
       url: server,
