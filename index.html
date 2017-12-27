@@ -132,6 +132,7 @@
       timeout: 15000,
       success: function(result) {
         console.log(result);
+        return (result.result)
       },
       error: function(xhr, status, error) {
         console.warn(xhr.responseText)
