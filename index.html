@@ -172,10 +172,10 @@
           var transblock = curblockint - 5
           confs = genprettyconf(curblockint - transblock, 10)
           $('.confs_' + address).empty().append(confs);
-          //    console.log(curblock);
-          //    console.log(curblockint);
+          console.log(curblock);
+          console.log(curblockint);
         } else if (extra = "get_confirmations") {
-          //  getcurrentblock('', server, "eth_blockNumber", "", "just_the_currentblock");
+          getcurrentblock('', server, "eth_blockNumber", "", "just_the_currentblock");
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
             var theblock = parseInt(trans['blockNumber']);
