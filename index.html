@@ -178,7 +178,7 @@
           var thetrans = result['result']['transactions'];
           thetrans.forEach(function(trans) {
             var rec_addr = trans['to'];
-            if (rec_addr != 'null') {
+            if (rec_addr) {
               console.log(address, rec_addr);
               if (address.toUpperCase() == rec_addr.toUpperCase()) {
 
