@@ -98,7 +98,7 @@
 
   window.setInterval(function() {
     generateTable();
-  }, $('textarea[name=refresh_sched]').val());
+  }, 4000);
 
   function generateTable() {
     var data = $('textarea[name=pasted_data]').val();
