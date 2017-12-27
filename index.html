@@ -14,12 +14,22 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="comment">Comment:</label>
-          <textarea class="form-control" rows="5" id="comment"></textarea>
+          <label for="comment">Paste ethereum/bitcoin addresses here</label>
+          <textarea class="form-control" name="pasted_data" rows="5" id="comment"></textarea>
+          <input type="button" onclick="javascript:generateTable()" value="Monitor Addresses" />
         </div>
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="address_monitor"></div>
+      </div>
+
+    </div>
+
+
   </div>
 
 
@@ -27,6 +37,28 @@
 
 </body>
 <script>
+  function generateTable() {
+    var data = $('textarea[name=pasted_data]').val();
+    console.log(data);
+    var rows = data.split("\n");
+
+    var table = $('<table />');
+
+    for (var y in rows) {
+      var cells = rows[y].split("\t");
+      var row = $('<tr />');
+      for (var x in cells) {
+        row.append('<td>' + cells[x] + '</td>');
+      }
+      table.append(row);
+    }
+
+    // Insert into DOM
+    $('#address_monitor').html(table);
+  }
+
+
+
   var apicall_data = {
     "jsonrpc": "2.0",
     "method": "eth_getBalance",
